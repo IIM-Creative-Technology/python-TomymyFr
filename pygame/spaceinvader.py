@@ -25,20 +25,23 @@ limite = False
 fin_jeu = False
 vie = 10
 touche = False
+egg = False
 
 
-chemin = random.randrange(3)
-print(f"chemin n°{chemin}")
+chemin = random.randrange(90)
 
-if chemin == 1:
+if chemin <= 30:
     check_column = ["column19", "column29", "column36","column38", "column46", "column48", "column52", "column58" ,"column62", "column68" ,"column74", "column76", "column84", "column86", "column94", "column96", "column310", "column410", "column510", "column610", "column710", "column810", "column910"]
     check_line = ["line29","line34", "line36","line39","line44", "line46", "line49", "line54", "line64", "line72", "line76", "line79", "line82", "line86", "line89","line99", "line102", "line100", "line109"]
-elif chemin == 2:
+    print(f"chemin n°1")
+elif chemin > 30 and chemin <= 60:
     check_column = ["column29", "column38", "column47", "column56", "column65", "column74", "column83", "column92", "column110"]
     check_line = ["line29", "line38", "line47", "line56", "line65", "line74", "line83", "line92", "line101"]
+    print(f"chemin n°2")
 else:
     check_column = ["column19", "column21","column22","column31","column32","column41","column42","column51","column52","column61","column62","column71","column72","column81","column82","column91","column92","column101","column110","column210", "column310", "column410", "column510", "column610", "column710", "column810", "column910"]
     check_line = ["line20","line30","line31", "line39","line40","line41","line49","line50","line51","line59","line60","line61", "line69","line70","line71", "line79","line80","line81", "line89","line90", "line91", "line99", "line109"]
+    print(f"chemin n°3")
 while loop:
     # ecran.blit(image, (250, 250))
     # pygame event
@@ -46,8 +49,10 @@ while loop:
     detection_fin = pygame.draw.rect(ecran, (255,255,255),(10, 475, 2, 2))
     square_debut = pygame.draw.rect(ecran, (255,73,0),(450, 0, 50, 50))
     square_fin = pygame.draw.rect(ecran, (45,232,25),(0, 450, 50, 50))
-    circle = pygame.draw.circle(ecran, (255, 255, 0), (position_x, position_y), radius)
-
+    if egg == True:
+        circle = pygame.draw.circle(ecran, (random.randrange(255), random.randrange(255), random.randrange(255)), (position_x, position_y), radius)
+    else:
+        circle = pygame.draw.circle(ecran, (255, 255, 0), (position_x, position_y), radius)
     # Lignes
     linename = "line"
     columnname = "column"
@@ -150,6 +155,11 @@ while loop:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_j:
                 loop = False
+            if event.key == pygame.K_m:
+                if egg == False:
+                    egg = True
+                else:
+                    egg = False
             ''' 
             if event.key == pygame.K_k:
                 os.system("exit")
