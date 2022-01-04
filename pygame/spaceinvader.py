@@ -23,7 +23,11 @@ position_y = 25
 radius = 15
 limite = False
 fin_jeu = False
-vie = 10
+print("\033[95mBienvenue sur ZE Labyrith\033[0m")
+print("\033[96mLe but est de déplacer le cercle jaune du carré rouge au carré vert\nsans toucher les lignes grises.\033[0m")
+print("\033[96mUne ligne de touchée : une vie perdue :(\033[0m")
+print("Les bordures de l'écran ne font pas perdre de vies !")
+vie = int(input("Nombre de vie : ") or 10)
 touche = False
 egg = False
 
@@ -32,15 +36,15 @@ chemin = random.randrange(90)
 if chemin <= 30:
     check_column = ["column19", "column29", "column36","column38", "column46", "column48", "column52", "column58" ,"column62", "column68" ,"column74", "column76", "column84", "column86", "column94", "column96", "column310", "column410", "column510", "column610", "column710", "column810", "column910"]
     check_line = ["line29","line34", "line36","line39","line44", "line46", "line49", "line54", "line64", "line72", "line76", "line79", "line82", "line86", "line89","line99", "line102", "line100", "line109"]
-    print(f"chemin n°1")
+    # print(f"chemin n°1")
 elif chemin > 30 and chemin <= 60:
     check_column = ["column29", "column38", "column47", "column56", "column65", "column74", "column83", "column92", "column110"]
     check_line = ["line29", "line38", "line47", "line56", "line65", "line74", "line83", "line92", "line101"]
-    print(f"chemin n°2")
+    # print(f"chemin n°2")
 else:
     check_column = ["column19", "column21","column22","column31","column32","column41","column42","column51","column52","column61","column62","column71","column72","column81","column82","column91","column92","column101","column110","column210", "column310", "column410", "column510", "column610", "column710", "column810", "column910"]
     check_line = ["line20","line30","line31", "line39","line40","line41","line49","line50","line51","line59","line60","line61", "line69","line70","line71", "line79","line80","line81", "line89","line90", "line91", "line99", "line109"]
-    print(f"chemin n°3")
+    # print(f"chemin n°3")
 while loop:
     # ecran.blit(image, (250, 250))
     # pygame event
@@ -68,7 +72,8 @@ while loop:
                 fullline = pygame.draw.line(ecran, (255, 0, 0), (j, k), (j+50, k), 4)
                 if circle.colliderect(square_debut) == False:
                     vie -= 1
-                    print(f"Nombre de vie : {vie}")
+                    if vie >= 0:
+                        print(f"Nombre de vie : {vie}")
                 touche = True
             if touche == True:
                 position_x = 475
@@ -97,7 +102,8 @@ while loop:
                 fullcolumn = pygame.draw.line(ecran, (255, 0, 0), (l, m), (l, m+50), 4)
                 if circle.colliderect(square_debut) == False:
                     vie -= 1
-                    print(f"Nombre de vie : {vie}")
+                    if vie >= 0:
+                        print(f"Nombre de vie : {vie}")
                 touche = True      
             if touche == True:
                 position_x = 475
@@ -167,14 +173,14 @@ while loop:
         if event.type == pygame.QUIT:
             loop = False
     if vie <= 0 and fin_jeu == False:
-        print("Perdu")
+        print("#########################\n          \033[91mPerdu\033[0m          \n#########################")
         fin_jeu = True
         time.sleep(3)
         print("Merci d'avoir joué")
         loop = False
 
     if detection_fin.colliderect(circle) and fin_jeu == False: 
-        print("#########################\n          Bravo          \n#########################")
+        print("#########################\n          \033[92mBravo\033[0m         \n#########################")
         fin_jeu = True
         time.sleep(3)
         print("Merci d'avoir joué")
