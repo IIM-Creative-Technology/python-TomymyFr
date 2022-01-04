@@ -29,7 +29,6 @@ egg = False
 
 
 chemin = random.randrange(90)
-
 if chemin <= 30:
     check_column = ["column19", "column29", "column36","column38", "column46", "column48", "column52", "column58" ,"column62", "column68" ,"column74", "column76", "column84", "column86", "column94", "column96", "column310", "column410", "column510", "column610", "column710", "column810", "column910"]
     check_line = ["line29","line34", "line36","line39","line44", "line46", "line49", "line54", "line64", "line72", "line76", "line79", "line82", "line86", "line89","line99", "line102", "line100", "line109"]
